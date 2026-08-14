@@ -1,0 +1,25 @@
+{
+  "name": "stayora",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Palakantil/Stayora.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Palakantil/Stayora/issues"
+  },
+  "homepage": "https://github.com/Palakantil/Stayora#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.2",
+    "nodemon": "^3.1.14"
+  }
+}
