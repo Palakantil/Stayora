@@ -34,7 +34,7 @@ app.get("/listings", async (req,res)=>{
     res.render("listings/index.ejs",{allListings});
 });
 
-//show route(specific listing)
+//show route(specific listings)
 app.get("/listings/:id", async (req,res)=>{
     let {id} = req.params;
     const listing = await Listing.findById(id);
