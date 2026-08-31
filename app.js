@@ -21,23 +21,22 @@ async function main(){
 }
 
 app.set("view engine","ejs");
+app.use(express.urlencoded({extended:true}));
 
 //test route
 app.get("/",(req,res)=>{
     res.send("hello!!");
 });
 
-// app.get("/testlisting", async (req,res) =>{
-//     let samplelisting = new Listing({
-//       title: "my new villa",
-//       description: "by the beach",
-//       price: 2000,
-//       location: "Calangute,goa",
-//       country: "India",
-//     });
-//     await samplelisting.save();
-//     console.log("sample was saved");
-//     res.send("successful testing");
-// });
+//index route(all listings)
+app.get("/listings", async (req,res)=>{
+    const allListings = await Listing.find({});
+    res.render("listings/index.ejs",{allListings});
+});
 
-
+//show route(specific listing)
+app.get("/listings/:id", async (req,res)=>{
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/show.ejs",{listing});
+});
