@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./model/listing.js");
+const methodOverride = require("method-override");
 
 let port = 8080;
 app.listen(port,()=>{
@@ -22,6 +23,7 @@ async function main(){
 
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
 
 //test route
 app.get("/",(req,res)=>{
@@ -51,4 +53,18 @@ app.post("/listings",async(req,res)=>{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
+})
+
+//Edit route
+app.get("/listings/:id/edit",async(req,res)=>{
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/edit.ejs",{listing});
+})
+
+//update route
+app.put("/listings/:id",async(req,res)=>{
+    let {id} = req.params;
+    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    res.redirect(`/listings/${id}`);
 })
