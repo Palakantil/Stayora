@@ -15,5 +15,9 @@
         <li><%= listing.description %> </li>
     </ul>
     <a href="/listings/<%=listing._id%>/edit">EDIT</a>
+    <br><br>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+        <button>DELETE THIS LISTING</button>
+    </form>
 </body>
 </html>
