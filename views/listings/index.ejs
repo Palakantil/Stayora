@@ -1,7 +1,22 @@
 <% layout("/layouts/boilerplate")%>
-<body>
+
+
     <h3>ALL LISTINGS</h3>
-    <%for(let listing of allListings){%>
-        <li><a href = "/listings/<%=listing._id%>"><%=listing.title%></a></li>
-    <%}%>
-</body>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+<%for(let listing of allListings){%>
+    <a href="/listings/<%= listing._id%>">
+    <div class="card text-bg-white">
+        <img src="<%=listing.image%>" class="card-img" alt="not found">
+        <div class="card-img-overlay">
+        <h3 class="card-title"><%=listing.title%></h3>
+        <h6 class="card-price">&#8377; <%= listing.price.toLocaleString("en-IN")%> /night</h6>
+        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
+        </div>
+    </div>
+    </a>
+<%}%>
+</div></body>
+
+

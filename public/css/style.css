@@ -1,10 +1,15 @@
+body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
 .navbar{
     height: 5rem;
-    background-color:aliceblue;
+    background-color:ghostwhite;
 }
-.fa-brands{
+.fa-staylinked{
     color: violet;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 .nav-link{
     color: #222222 !important;
@@ -15,4 +20,47 @@
 }
 .f-info-links a:hover {
     text-decoration:underline;
+}
+.f-info-links , .f-info-socials{
+    width:100%;
+}
+.f-info-socials i {
+    font-size: 1rem ;
+}
+.f-info{
+    text-align: center;
+    background-color:aliceblue;
+    height: 8 rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+.card{
+    text-align: center;
+    border:none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-img {
+    filter: brightness(0.5);
+    height:20rem !important;
+}
+.card-img-overlay{
+    color:white;
+}
+.card-img-overlay:hover{
+    opacity : 0.5;
+    background-color:white;
+}
+.container{
+    flex:1;
+}
+.add-btn{
+    background-color: violet !important;
+    border: none !important;
 }
