@@ -6,6 +6,7 @@
         <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" name="listing[title]" placeholder="Enter Title" class="form-control" required>
+        <div class="valid-feedback">Title looks good!</div>
         </div>
 
         <div class="mb-3">
@@ -16,17 +17,21 @@
         <div class="mb-3">
         <label for="location" class="form-label">Location</label>
         <input type="text" name="listing[location]" placeholder="Enter location" class="form-control" required>
+        <div class="invalid-feedback">location should be valid</div>
+
         </div>
 
     <div class="row">
         <div class="mb-3 col-sm-4">
         <label for="price" class="form-label">Price</label>
         <input type="number" name="listing[price]" placeholder="Enter price" class="form-control" required>
+        <div class="invalid-feedback">Price should be valid</div>
         </div>
 
         <div class="mb-3 col-sm-8">
         <label for="country" class="form-label">Country</label>
         <input type="text" name="listing[country]" placeholder="Enter country" class="form-control" required>
+        <div class="invalid-feedback">country should be valid</div>
         </div>
     </div>
 
