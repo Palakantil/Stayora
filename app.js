@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-
+const {listingSchema} = require("./schema.js");
 
 let port = 8080;
 app.listen(port,()=>{
@@ -26,7 +26,6 @@ async function main(){
     await mongoose.connect(MONGO_URL);
 }
 
-//server side validation
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -37,6 +36,16 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.get("/",(req,res)=>{
     res.send("hello!!");
 });
+
+const validateListing = (req,res,next) => {
+    let {error} = listingSchema.validate(req.body);
+        if(error){
+            let errMsg = error.details.map((el)=>el.message).join(",");
+            throw new ExpressError(400,errMsg);
+        }else{
+            next();
+        }
+};
 
 //index route(all listings)
 app.get("/listings", 
@@ -61,10 +70,8 @@ app.get("/listings/:id",
 
 //create route(create a new route and add it on index)
 app.post("/listings",
+    validateListing,
     wrapAsync(async(req,res)=>{
-        if(!req.body.listing){
-            throw new ExpressError(404,"Send valid data for listing");
-        }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -81,10 +88,8 @@ app.get("/listings/:id/edit",
 
 //update route
 app.put("/listings/:id",
+    validateListing,
     wrapAsync(async(req,res)=>{
-        if(!req.body.listing){
-            throw new ExpressError(404,"Send valid data for listing");
-        }
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
     res.redirect(`/listings/${id}`);
