@@ -26,6 +26,7 @@ async function main(){
     await mongoose.connect(MONGO_URL);
 }
 
+//server side validation
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
